@@ -1,0 +1,677 @@
+@font-face {
+    font-family: 'mountains_of_christmasregular';
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/35984/mountainsofchristmas-webfont.woff2') format('woff2'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/35984/mountainsofchristmas-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body,
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Black sky */
+    overflow: hidden;
+}
+
+
+svg{
+  width:90%;
+  height:90%;
+  visibility:hidden;
+ 
+}
+
+.sparkle{
+  /* mix-blend-mode:luminosity */
+}
+#endMessage{
+  font-family: mountains_of_christmasregular;
+  font-size: 2rem;
+  text-anchor: middle;
+  text-align: center;
+  fill: #FFFFFF;
+  color: #FFFFFF;
+  opacity:0;
+  letter-spacing: 1px;
+}
+
+a {
+  color: white;
+  text-decoration: underline dotted #FFFFFF;
+}
+a:visited {
+  color: red;
+  
+}
+
+
+
+
+
+
+
+#starCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mainSVG {
+  position: relative;
+  z-index: 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+
+.snow-fall {
+    height: 100%;
+    background-color: transparent; /* Let snow layer show on black */
+    text-align: center;
+}
+
+h1{
+    font-family: 'Roboto', sans-serif;
+    color: whitesmoke;
+    font-size: 50px;
+}
+
+.canvas {
+    --skin: #fca;
+    --suit: #D32F2F;
+    --belt: #222;
+    --belt-buckle: gold;
+    width: 80vmin;
+    height: 80vmin;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.canvas::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    width: 200vmax;
+    height: 200vmax;
+    background: white;
+    transform: translate(-50%, 0) rotate(1deg);
+    border-radius: 100% / 20%;
+}
+
+.body {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    background: var(--suit);
+    border-radius: 100% / 150% 150% 25% 25%;
+    transform: translate(-50%, 0);
+    background-image:
+            radial-gradient(circle at 50% -50%, transparent 75%, var(--belt) 0 83%, transparent 0 92.5%, white 93%),
+            linear-gradient(to right, transparent 42%, white 43%, transparent 58%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 51% 100%, 50% 96%, 49% 100%, 0% 100%);
+}
+
+.buttons {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 2.5%;
+    height: 2.5%;
+    border-radius: 50%;
+    background: var(--belt);
+    color: var(--belt);
+    box-shadow: 0 5vmin, 0 10vmin 0 0.1vmin, 0 22vmin;
+    opacity: 0.75;
+}
+
+.belt {
+    position: absolute;
+    top: 73%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10%;
+    height: 7.5%;
+    border: 1vmin solid var(--belt-buckle);
+    border-radius: 1vmin;
+    background: var(--belt-buckle);
+    box-shadow: inset 1.5vmin 0 0 2.6vmin var(--belt);
+}
+
+.arms {
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 65%;
+    height: 40%;
+    border-radius: 100% / 170% 170% 25% 25%;
+    background: var(--suit) linear-gradient(transparent 20%, #0003);
+}
+
+.hands {
+    position: absolute;
+    top: 70%;
+    left: 18%;
+    width: 13%;
+    height: 13%;
+    background: var(--belt);
+    box-shadow: 41vmin 0 var(--belt);
+    border-radius: 50%;
+}
+
+.leg {
+    position: absolute;
+    top: 75%;
+    left: 29%;
+    width: 19%;
+    height: 25%;
+    background: var(--suit);
+    transform: skew(2deg);
+    background-image: linear-gradient(#0002, transparent 70%, var(--belt) 0);
+}
+
+.leg + .leg {
+    left: 52%;
+}
+
+.leg::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: -6%;
+    width: 110%;
+    height: 20%;
+    background: black;
+    border-radius: 10vmin 10vmin 0 0;
+}
+
+.leg + .leg::after {
+    left: -4%;
+}
+
+@media (prefers-reduced-motion) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+ul {
+    display: table;
+    list-style: none;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0;
+}
+ul li {
+    display: inline-block;
+    float: left;
+}
+
+.santa-claus {
+    display: block;
+    margin: 0 auto;
+    max-width: 500px;
+    animation: santa-claus 2s ease-in-out infinite alternate;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+@keyframes santa-claus {
+    from {
+        transform: rotateZ(-10deg);
+    }
+    to {
+        transform: rotateZ(10deg);
+    }
+}
+
+.santa-claus > div {
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.santa-claus .hat {
+    display: block;
+    position: relative;
+    width: 310px;
+    z-index: 99;
+}
+
+.santa-claus .hat .cone-1 {
+    border-left: 50px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 70px solid #D32F2F;
+}
+
+.santa-claus .hat .cone-2 {
+    background-color:  #D32F2F;
+    border-top: 0 solid transparent;
+    border-right: 340px solid #D32F2F;
+    border-bottom: 100px solid transparent;
+    box-shadow: -25px 15px 30px -5px rgba(1,1,1,0.3);
+    position: relative;
+    left: -56px;
+    top: 49px;
+
+    -webkit-transform: rotate(-15deg);
+    -moz-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+
+    -webkit-border-radius: 30% 100% 0 100%;
+    -moz-border-radius: 30% 100% 0 100%;
+    border-radius: 30% 100% 0 100%;
+}
+
+.santa-claus .hat::after,
+.santa-claus .hat::before {
+    background-color: #fff;
+    content: " ";
+    display: block;
+}
+
+.santa-claus .hat::after {
+    box-shadow: 0 -15px 40px -5px rgba(1,1,1,0.4);
+    height: 80px;
+    margin-left: -15px;
+    position: relative;
+    width: 340px;
+
+    -webkit-border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    border-radius: 0.8em;
+}
+
+.santa-claus .hat::before {
+    box-shadow: 20px 20px 40px -5px rgba(1,1,1,0.3);
+    height: 80px;
+    left: -120px;
+    position: absolute;
+    top: 80px;
+    width: 80px;
+    z-index: 111;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.santa-claus .face {
+    background-color: #ffccbc;
+    box-shadow: 0 0 30px 5px rgba(1,1,1,0.3);
+    content: " ";
+    display: block;
+    height: 130px;
+    position: relative;
+    top: -10px;
+    width: 300px;
+}
+
+.santa-claus > .ears {
+    background-color: #eea2ad;
+    box-shadow: 0 0 30px 5px rgba(1,1,1,0.3);
+    display: block;
+    height: 60px;
+    margin: 0 auto;
+    position: relative;
+    top: -125px;
+    width: 330px;
+    z-index: -1;
+
+    -webkit-border-radius: 1em 1em 2em 2em;
+    -moz-border-radius: 1em 1em 2em 2em;
+    border-radius: 1em 1em 2em 2em;
+}
+
+.santa-claus .face > .eyes {
+    display: inline-block;
+    height: 0;
+    margin: 20px auto 0;
+    max-width: 160px;
+    width: 100%;
+}
+
+.santa-claus .face > .eyes::before,
+.santa-claus .face > .eyes::after {
+    background-color: #111;
+    content: " ";
+    display: inline-block;
+    float: left;
+    height: 20px;
+    width: 20px;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.santa-claus .face > .eyes::after {
+    float: right;
+}
+
+.santa-claus .face > .nose {
+    background-color: #EEA2AD;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+    width: 70px;
+    z-index: 111;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.santa-claus .face > .beard {
+    background-color: #ecf0f1;
+    box-shadow: -10px 10px 10px -5px rgba(1,1,1,0.3);
+    height: 240px;
+    margin: 0 auto;
+    position: relative;
+    top: -30px;
+    width: 340px;
+    left: -20px;
+
+    -webkit-transform: rotate(349deg);
+    -moz-transform: rotate(349deg);
+    transform: rotate(349deg);
+
+    -webkit-border-radius: 30% 70% 87% 13% / 30% 30% 70% 70%;
+    -moz-border-radius: 30% 70% 87% 13% / 30% 30% 70% 70%;
+    border-radius: 30% 70% 87% 13% / 30% 30% 70% 70%;
+
+    -webkit-animation: animabeard 1.6s ease-in-out infinite alternate;
+    -moz-animation: animabeard 1.6s ease-in-out infinite alternate;
+    animation: animabeard 1.6s ease-in-out infinite alternate;
+}
+
+.santa-claus .face > .beard > .mouth {
+    height: 50px;
+    left: 30px;
+    margin: 0 auto;
+    position: relative;
+    top: 20px;
+    width: 60px;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    -webkit-animation: hoho 1.6s ease-in-out infinite alternate;
+    -moz-animation: hoho 1.6s ease-in-out infinite alternate;
+    animation: hoho 1.6s ease-in-out infinite alternate;
+}
+
+.ho-ho-ho {
+    height: 0;
+    padding-top: 200px;
+    width: 150px;
+
+    -webkit-animation: txtHohoho 1.6s ease-in-out infinite alternate;
+    -moz-animation: txtHohoho 1.6s ease-in-out infinite alternate;
+    animation: txtHohoho 1.6s ease-in-out infinite alternate;
+}
+
+.ho-ho-ho h2::before {
+    text-shadow: 0 10px 20px rgba(1,1,1,0.4);
+    color: #fff;
+    content: "HO";
+    font-family: 'Roboto', sans-serif;
+    font-size: 62px;
+    line-height: 1.4em;
+}
+
+
+.ho-ho-ho:last-of-type h2 {
+    margin: 0 10px 30px;
+    text-align: right;
+}
+
+.ho-ho-ho:last-of-type h2:nth-child(2) {margin-right: -50px;}
+.ho-ho-ho:last-of-type h2:first-child,
+.ho-ho-ho:last-of-type h2:last-child {
+    -webkit-animation: txtHohohoRight 1.6s ease-in-out infinite alternate;
+    -moz-animation: txtHohohoRight 1.6s ease-in-out infinite alternate;
+    animation: txtHohohoRight 1.6s ease-in-out infinite alternate;
+}
+
+
+.ho-ho-ho:first-of-type h2 {
+    margin: 0 50px 30px 0;
+    text-align: left;
+}
+
+.ho-ho-ho:first-of-type h2:nth-child(2) {margin-left: -60px;}
+.ho-ho-ho:first-of-type h2:first-child,
+.ho-ho-ho:first-of-type h2:last-child {
+    -webkit-animation: txtHohohoLeft 1.6s ease-in-out infinite alternate;
+    -moz-animation: txtHohohoLeft 1.6s ease-in-out infinite alternate;
+    animation: txtHohohoLeft 1.6s ease-in-out infinite alternate;
+}
+
+
+.ho-ho-ho h2:nth-child(2) {
+    -webkit-animation: txtHohohoMiddle 1.6s ease-in-out infinite alternate;
+    -moz-animation: txtHohohoMiddle 1.6s ease-in-out infinite alternate;
+    animation: txtHohohoMiddle 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes txtHohoho {
+    from {opacity: .2}
+    to {opacity: 1}
+}
+
+@-webkit-keyframes txtHohohoMiddle {
+    from {-webkit-transform: scale(1.5);}
+    to {-webkit-transform: scale(1);}
+}
+@-moz-keyframes txtHohohoMiddle {
+    from {-moz-transform: scale(1.5);}
+    to {-moz-transform: scale(1);}
+}
+@keyframes txtHohohoMiddle {
+    from {transform: scale(1.5);}
+    to {transform: scale(1);}
+}
+
+@-webkit-keyframes txtHohohoLeft {
+    to {-webkit-transform: scale(1.5);}
+}
+@-moz-keyframes txtHohohoLeft {
+    to {-moz-transform: scale(1.5);}
+}
+@keyframes txtHohohoLeft {
+    to {transform: scale(1.5);}
+}
+
+
+@-webkit-keyframes txtHohohoRight {
+    to {-webkit-transform: scale(1.5);}
+}
+@-moz-keyframes txtHohohoRight {
+    to {-moz-transform: scale(1.5);}
+}
+@keyframes txtHohohoRight {
+    to {transform: scale(1.5);}
+}
+
+
+@-webkit-keyframes animaBarba {
+    to {-webkit-transform: rotate(-10deg);}
+}
+@-moz-keyframes animaBarba {
+    to {-moz-transform: rotate(-10deg);}
+}
+@keyframes animaBarba {
+    to {transform: rotate(-10deg);}
+}
+
+@-webkit-keyframes hoho {
+    0% {
+        background-color: #ecf0f1;
+        box-shadow: 0 20px 0 0 #111;
+        height: 40px;
+        width: 60px;
+    }
+
+    60%  {
+        background-color: #ecf0f1;
+        box-shadow: 0 60px 0 0 #111;
+        height: 60px;
+        width: 30px;
+    }
+
+    80%  {
+        background-color: #ecf0f1;
+        box-shadow: 0 60px 0 0 #111;
+        height: 50px;
+        width: 40px;
+    }
+
+    100%  {
+        background-color: #ecf0f1;
+        box-shadow: 0 60px 0 0 #111;
+        height: 60px;
+        width: 30px;
+    }
+}
+@-moz-keyframes hoho {
+    0% {
+        background-color: #ecf0f1;
+        box-shadow: 0 20px 0 0 #111;
+        height: 40px;
+        width: 60px;
+    }
+
+    60%  {
+        background-color: #ecf0f1;
+        box-shadow: 0 60px 0 0 #111;
+        height: 60px;
+        width: 30px;
+    }
+
+    80%  {
+        background-color: #ecf0f1;
+        box-shadow: 0 60px 0 0 #111;
+        height: 50px;
+        width: 40px;
+    }
+
+    100%  {
+        background-color: #ecf0f1;
+        box-shadow: 0 60px 0 0 #111;
+        height: 60px;
+        width: 30px;
+    }
+}
+@keyframes hoho {
+    0% {
+        background-color: #ecf0f1;
+        box-shadow: 0 20px 0 0 #111;
+        height: 40px;
+        width: 60px;
+    }
+
+    60%  {
+        background-color: #ecf0f1;
+        box-shadow: 0 60px 0 0 #111;
+        height: 60px;
+        width: 30px;
+    }
+
+    80%  {
+        background-color: #ecf0f1;
+        box-shadow: 0 60px 0 0 #111;
+        height: 50px;
+        width: 40px;
+    }
+
+    100%  {
+        background-color: #ecf0f1;
+        box-shadow: 0 60px 0 0 #111;
+        height: 60px;
+        width: 30px;
+    }
+}
+
+/* Popup Gift Styles */
+#popupGift p {
+    font-family: 'mountains_of_christmasregular', cursive, sans-serif;
+    font-size: 20px;
+    background: linear-gradient(to right, #FF0000, #00FF00);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#popupGift button {
+    padding: 12px 30px;
+    background: linear-gradient(45deg, #FF0000, #00FF00);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#popupGift button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+#popupGift a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 25px;
+    background: linear-gradient(45deg, #00FF00, #FF0000);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+#popupGift a:hover {
+    transform: translateY(-3px);
+}
